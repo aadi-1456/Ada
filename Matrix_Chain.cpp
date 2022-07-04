@@ -1,56 +1,48 @@
-
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-int MatrixChainOrder(int p[], int n)
-{
-
-	
-	int m[n][n];
-
-	int i, j, k, L, q;
-
-	
-	for (i = 1; i < n; i++)
-		m[i][i] = 0;
-
-	
-	for (L = 2; L < n; L++)
-	{
-		for (i = 1; i < n - L + 1; i++)
-		{
-			j = i + L - 1;
-			m[i][j] = INT_MAX;
-			for (k = i; k <= j - 1; k++)
-			{
-				
-				q = m[i][k] + m[k + 1][j]
-					+ p[i - 1] * p[k] * p[j];
-				if (q < m[i][j])
-					m[i][j] = q;
-			}
-		}
-	}
-
-	return m[1][n - 1];
+void chained(int n,int d[]){
+  int m[n+1][n+1],s[n+1][n+1];
+  for(int i=0;i<=n;i++){
+    for(int j=0;j<=n;j++){
+        m[i][j]=0;
+        s[i][j]=0;
+    }
+  }
+  
+  for(int diag=1;diag<n;diag++){
+    for(int i=1;i<=n-diag;i++){
+      int j=i+diag;
+      int smol=999;
+      for(int k=i;k<j;k++){
+        int q=m[i][k]+m[k+1][j]+d[i-1]*d[k]*d[j];
+        if(q<smol){
+          smol=q;
+          s[i][j]=k;
+        }
+      }
+      m[i][j]=smol;
+    }
+  }
+  
+  cout<<"\nMinimum number of multiplications are : "<<m[1][n];
+  
 }
 
-
-int main()
-{
-	int size;
-    cout<<"enter the size of matrix"<<endl;
-    cin>>size;
-    int arr[size];
-    cout<<"enter the array"<<endl;
-    for(int i=0;i<size;i++)
-    {
-        cin>>arr[i];
-    }
-	cout << "Minimum number of multiplications is "
-		<< MatrixChainOrder(arr, size);
-
-	getchar();
-	return 0;
+int main(){
+  int n;
+  cout<<"Enter the number of matrices : ";
+  cin>>n;
+  int d[n+1],temp;
+  cout<<"Enter the order of the matrices : "<<endl<<"matrix 1 : ";
+  cin>>d[0]>>d[1];
+  for(int i=2;i<=n;i++){
+    cout<<"matrix "<<i<<" : ";
+    cin>>temp>>d[i];
+  }
+  
+  chained(n,d);
+  
+  return 0;
 }
 
