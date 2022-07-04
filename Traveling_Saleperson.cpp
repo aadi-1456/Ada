@@ -1,7 +1,8 @@
+//Travelling salesperson problem code 
+
 #include <bits/stdc++.h>
 #include<iostream>
 using namespace std;
-//Salesman Problem
 int arr[10][10], n, visit[10];
 int cost_opt = 0, cost_apr = 0;
 int least_apr(int c);
@@ -14,8 +15,7 @@ void mincost(int city){
     ncity = least_opt(city);
     if (ncity == 999){
         ncity = 1;
-        cout<<" "<<ncity;
-        printf("%d", ncity);
+        // cout<<" "<<ncity;
         cost_opt += arr[city][ncity];
         return;
     }
@@ -24,11 +24,11 @@ void mincost(int city){
 void mincost_apr(int city){
     int i, ncity;
     visit[city] = 1;
-    cout<<"--> "<<city;
+    cout<<"-->"<<city;
     ncity = least_apr(city);
     if (ncity == 999){
         ncity = 1;
-        cout<<ncity;
+        // cout<<""<<ncity;
         cost_apr += arr[city][ncity];
         return;
     }
@@ -73,28 +73,24 @@ int  main()
     cin>>n;
     cout<<"Enter the cost matrix"<<endl;
     for (i = 1; i <= n; i++){
-        cout<<"Enter elements of row: "<<i<<endl;
+        
         for (j = 1; j <= n; j++)
             cin>>arr[i][j];
         visit[i] = 0;
     }
-    printf("The cost list is \n");
-    for (i = 1; i <= n; i++){
-        printf("\n\n");
-        for (j = 1; j <= n; j++)
-            cout<<arr[i][j]<<" ";
-    }
-    cout<<"Optimal Solution"<<endl;
-    cout<<"The path is : "<<endl;
+    
+    
+    cout<<"Optimal Solution:-"<<endl;
+    cout<<"The path is :-"<<endl;
     mincost(1);
-    cout<<"Minimum cost is :"<<endl;
+    cout<<"\nMinimum cost is :-"<<endl;
     cout<<cost_opt<<endl;
-    cout<<"Approximated Solution"<<endl;
+    cout<<"\nApproximated Solution:-"<<endl;
     for (i = 1; i <= n; i++)
         visit[i] = 0;
-    cout<<"The path is : "<<endl;
+    cout<<"\nThe path is :-\n";
     mincost_apr(1);
-    cout<<"Minimum cost :"<<cost_apr<<endl;
-    cout<<"Error in approximation is approximated solution / optimal solution"<<((float)cost_apr / cost_opt)<<endl;
+    cout<<"\nMinimum cost :-\n"<<cost_apr<<endl;
+    cout<<"\nError in approximation is approximated solution / optimal solution:-\n"<<((float)cost_apr / cost_opt)<<endl;
     return 0;
 }
