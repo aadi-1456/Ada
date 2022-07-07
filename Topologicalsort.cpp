@@ -28,10 +28,10 @@ int main(){
             if(indeg[k]==0 && flag[k]==0){
                 cout<<k<<" ";
                 flag[k]=1;
-            }
-            for(i=1;i<=n;i++){
-                if(cost[k][i]==1){
+                for(i=1;i<=n;i++){
+                    if(cost[k][i]==1){
                     indeg[i]--;
+                    }
                 }
             }
         }
@@ -39,3 +39,4 @@ int main(){
     }
     return 0;
 }
+
