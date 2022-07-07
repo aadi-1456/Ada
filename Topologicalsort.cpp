@@ -30,8 +30,8 @@ int main(){
                 flag[k]=1;
             }
             for(i=1;i<=n;i++){
-                if(cost[i][k]==1){
-                    indeg[k]--;
+                if(cost[k][i]==1){
+                    indeg[i]--;
                 }
             }
         }
